@@ -58,6 +58,8 @@ class Tripletexer::APIClient
       faraday.headers = {
         'Content-Type' => 'application/json'
       }
+      faraday.request :multipart
+      faraday.request :url_encoded
       faraday.adapter :net_http
       faraday.basic_auth(0, session_token) if session_token
       faraday.proxy = proxy if proxy # https://github.com/lostisland/faraday/issues/733

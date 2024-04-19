@@ -27,6 +27,11 @@ module Tripletexer::Endpoints
       update_entity("/v2/order/#{id}", body)
     end
 
+    # https://tripletex.no/v2-docs/#/order/OrderAttach_attach
+    def attach(order_id, payload)
+      api_client.put("/v2/order/#{order_id}/:attach", payload, { 'Content-Type' => 'multipart/form-data' })
+    end
+
     # https://tripletex.no/v2-docs/#!/order/invoice
     def create_invoice(id, invoice_date, send_to_customer = true)
       final_params = params.merge(
